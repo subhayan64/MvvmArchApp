@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.mvvmarchapp"
@@ -28,6 +28,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += [
+                "-Xjvm-default=all",
+        ]
     }
 }
 
@@ -45,4 +48,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     //gson dependency:
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+
+    //view model
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+
+    //live data
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 }
