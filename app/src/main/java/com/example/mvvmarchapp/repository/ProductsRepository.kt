@@ -20,8 +20,10 @@ class ProductsRepository(
         val result = apiInterface.getProducts()
         if (result.body() != null) {
 
+            //to store response data in the db
             itemsDatabase.itemDao().insertItems(result.body()!!.data.items)
 
+            //to update the livedata with api response
             productsLiveData.postValue(result.body())
         }
     }
