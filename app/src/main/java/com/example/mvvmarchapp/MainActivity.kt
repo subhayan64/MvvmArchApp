@@ -18,13 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val apiInterface = ApiUtilities.getInstance().create(ApiInterface::class.java)
-
-        val productsRepository = ProductsRepository(apiInterface)
+        val repository = (application as MyApplication).productsRepository
 
         productsViewModel = ViewModelProvider(
             this, ProductsViewModelFactory(
-                productsRepository
+                repository
             )
         ).get(ProductsViewModel::class.java)
 
