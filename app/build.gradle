@@ -34,6 +34,10 @@ android {
                 "-Xjvm-default=all",
         ]
     }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -71,4 +75,7 @@ dependencies {
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.5.0")
+
+    //reclycler view
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
 }
