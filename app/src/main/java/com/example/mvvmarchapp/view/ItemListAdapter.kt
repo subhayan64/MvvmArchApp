@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmarchapp.databinding.ItemsTileBinding
 import com.example.mvvmarchapp.model.Item
 
-class ItemListAdapter(val items: List<Item>) :
+class ItemListAdapter(private val items: List<Item>) :
     RecyclerView.Adapter<ItemListAdapter.ItemListViewHolder>() {
 
     inner class ItemListViewHolder(val binding: ItemsTileBinding) :
