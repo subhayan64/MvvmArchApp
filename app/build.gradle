@@ -76,6 +76,10 @@ dependencies {
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.5.0")
 
-    //reclycler view
+    //recycler view
     implementation("androidx.recyclerview:recyclerview:1.2.1")
+
+    //navigation dependency
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 }
