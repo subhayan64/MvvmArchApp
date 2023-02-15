@@ -6,26 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_margin="20dp"-->
-    <!--        android:text="Explore"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <include
+        android:id="@+id/iAppBarLayout"
+        layout="@layout/app_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/rvItems"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="400dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
     <fragment
         android:id="@+id/fListViewFragment"
@@ -36,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iAppBarLayout"
         app:layout_constraintBottom_toTopOf="@id/bnvBottomNav"
         app:navGraph="@navigation/nav_graph" />
 

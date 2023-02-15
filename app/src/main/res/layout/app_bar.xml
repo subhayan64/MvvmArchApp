@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="34dp"
+    android:paddingStart="35dp"
+    android:paddingEnd="35dp"
+    android:paddingBottom="21dp"
+    android:background="@color/app_bar_bg"
+    >
+
+    <TextView
+        android:id="@+id/tvExplore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Explore" />
+
+    <Button
+        android:id="@+id/btnFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:textColor="@color/selected"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvExplore"
+        android:text="Filter" />
+
+    <EditText
+        android:layout_marginTop="15dp"
+        android:id="@+id/etSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:paddingStart="16dp"
+        android:hint="Search"
+        android:textColorHint="@color/search_text"
+        android:singleLine="true"
+        android:background="@drawable/edit_text_shape"
+        app:layout_constraintTop_toBottomOf="@id/tvExplore"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
