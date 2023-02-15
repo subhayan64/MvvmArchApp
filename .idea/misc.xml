@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bottom_nav_colors.xml" value="0.116" />
+        <entry key="app/src/main/res/drawable/bottom_nav_icon.xml" value="0.114" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_grid_view.xml" value="0.16485507246376813" />
         <entry key="app/src/main/res/layout/fragment_list_view.xml" value="0.16485507246376813" />

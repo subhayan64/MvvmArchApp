@@ -16,44 +16,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var productsViewModel: ProductsViewModel
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
-    //    private lateinit var adapter: ItemListAdapter
-//
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fListViewFragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bnvBottomNav)
+        val bottomNavigationView = findViewById<BottomNavigationView>(binding.bnvBottomNav.id)
 
         setupWithNavController(bottomNavigationView, navController)
 
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-
-//        binding.rvItems.layoutManager = LinearLayoutManager(this)
-
-//        val repository = (application as MyApplication).productsRepository
-//
-//        productsViewModel = ViewModelProvider(
-//            this, ProductsViewModelFactory(
-//                repository
-//            )
-//        ).get(ProductsViewModel::class.java)
-
-//        productsViewModel.products.observe(this) {
-//            Log.d("Subhayan", "onCreate: ${it.toString()}")
-//
-//            productsViewModel.products.value?.data?.items?.let {
-//                adapter = ItemListAdapter(it)
-//                binding.rvItems.adapter = adapter
-//
-//            }
-//        }
     }
 }

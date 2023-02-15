@@ -1,11 +1,21 @@
 package com.example.mvvmarchapp.view
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mvvmarchapp.MyApplication
 import com.example.mvvmarchapp.R
+import com.example.mvvmarchapp.databinding.ActivityMainBinding
+import com.example.mvvmarchapp.databinding.FragmentListViewBinding
+import com.example.mvvmarchapp.viewmodel.ProductsViewModel
+import com.example.mvvmarchapp.viewmodel.ProductsViewModelFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +32,10 @@ class ListViewFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var productsViewModel: ProductsViewModel
+    private lateinit var binding: FragmentListViewBinding
+    private lateinit var adapter: ItemListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,9 +47,28 @@ class ListViewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_view, container, false)
+        binding = FragmentListViewBinding.inflate(inflater, container, false)
+        //assign layout manager
+        binding.rvItems.layoutManager = LinearLayoutManager(activity)
+
+        //initialising ViewModel
+        val repository = (activity?.applicationContext as MyApplication).productsRepository
+        productsViewModel = ViewModelProvider(
+            this, ProductsViewModelFactory(
+                repository
+            )
+        ).get(ProductsViewModel::class.java)
+
+        //collecting data from livedata
+        productsViewModel.products.observe(requireActivity()) {
+            productsViewModel.products.value?.data?.items?.let {
+                adapter = ItemListAdapter(it)
+                binding.rvItems.adapter = adapter
+            }
+        }
+        return binding.root
     }
 
     companion object {
