@@ -49,7 +49,7 @@ class ItemListAdapter(private val items: List<Item>, var orientation: Int) :
                 } else {
                     binding.tvItemExtra.text = ""
                 }
-
+                //implement network image with Glide to appropriate image view
                 Glide.with(binding.ivItems.context).load(currentItem.image).into(binding.ivItems)
             }
             1 -> {

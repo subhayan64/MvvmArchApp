@@ -72,8 +72,8 @@
         android:layout_height="1dp"
         android:layout_marginTop="14dp"
         android:background="@color/divider_color"
-        app:layout_constraintStart_toStartOf="@+id/tvItemTPrice"
-        app:layout_constraintTop_toBottomOf="@id/tvItemTPrice" />
+        app:layout_constraintStart_toStartOf="@+id/tvItemMRP"
+        app:layout_constraintTop_toBottomOf="@id/tvItemMRP" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

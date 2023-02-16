@@ -3,46 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="34dp"
-    android:paddingStart="35dp"
-    android:paddingEnd="35dp"
-    android:paddingBottom="21dp"
     android:background="@color/app_bar_bg"
-    >
+    android:paddingStart="35dp"
+    android:paddingTop="34dp"
+    android:paddingEnd="35dp"
+    android:paddingBottom="21dp">
 
     <TextView
         android:id="@+id/tvExplore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Explore"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Explore" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <TextView
         android:id="@+id/btnFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:text="@string/Filter"
         android:textColor="@color/selected"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@id/tvExplore"
-        android:text="Filter" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/svSearchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:id="@+id/etSearch"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:paddingStart="16dp"
-        android:hint="Search"
-        android:textColorHint="@color/search_text"
-        android:singleLine="true"
         android:background="@drawable/edit_text_shape"
-        app:layout_constraintTop_toBottomOf="@id/tvExplore"
+        android:paddingStart="16dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvExplore"
+        app:queryBackground="@null"
+        app:queryHint="Search"
+        app:searchIcon="@null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

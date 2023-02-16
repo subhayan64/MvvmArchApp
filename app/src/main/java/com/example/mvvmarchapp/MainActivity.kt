@@ -1,17 +1,13 @@
 package com.example.mvvmarchapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmarchapp.databinding.ActivityMainBinding
-import com.example.mvvmarchapp.view.ItemListAdapter
-import com.example.mvvmarchapp.viewmodel.ProductsViewModel
-import com.example.mvvmarchapp.viewmodel.ProductsViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -31,5 +27,26 @@ class MainActivity : AppCompatActivity() {
 
         setupWithNavController(bottomNavigationView, navController)
 
+        binding.iAppBarLayout.svSearchView.clearFocus()
+        binding.iAppBarLayout.svSearchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchForItem(newText)
+                return true
+            }
+
+        })
+    }
+
+    private fun searchForItem(newText: String?) {
+        if (newText != null) {
+            Log.d("subhayan", newText)
+        }
     }
 }
+
+
