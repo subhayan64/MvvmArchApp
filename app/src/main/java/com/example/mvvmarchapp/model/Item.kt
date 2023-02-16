@@ -7,5 +7,6 @@ data class Item(
     val extra: String?,
     @PrimaryKey
     val name: String,
-    val price: String
+    val price: String,
+    val image: String
 )

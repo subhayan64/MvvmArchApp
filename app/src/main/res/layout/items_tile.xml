@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/ivItems"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:contentDescription="Item image"
         android:src="@drawable/content_block"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,25 +33,37 @@
         />
 
     <TextView
-        android:id="@+id/tvItemTPrice"
+        android:id="@+id/tvItemMRP"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:text="MRP:"
+        android:textColor="@color/mrp_color"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@id/ivItems"
-
         app:layout_constraintTop_toBottomOf="@id/tvItemTitle"
-        tools:text="MRP: ₹100.0"
 
         />
+
+    <TextView
+        android:id="@+id/tvItemTPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvItemMRP"
+        app:layout_constraintStart_toEndOf="@id/tvItemMRP"
+        tools:text="₹100.0" />
 
     <TextView
         android:id="@+id/tvItemExtra"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/tvItemTPrice"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvItemMRP"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Same Day Shipping" />
 

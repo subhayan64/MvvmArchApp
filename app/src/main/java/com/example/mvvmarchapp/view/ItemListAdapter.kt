@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mvvmarchapp.databinding.ItemGridComponentBinding
 import com.example.mvvmarchapp.databinding.ItemsTileBinding
 import com.example.mvvmarchapp.model.Item
@@ -32,22 +33,10 @@ class ItemListAdapter(private val items: List<Item>, var orientation: Int) :
                     false
                 ).root, orientation
             )
-
         }
-
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-//        holder.binding.apply {
-//            tvItemTitle.text = items[position].name
-//            tvItemTPrice.text = items[position].price
-//            if (items[position].extra != null) {
-//                tvItemExtra.text = items[position].extra
-//            } else {
-//                tvItemExtra.text = ""
-//            }
-//        }
-
         val currentItem = items[position]
 
         when (holder.viewType) {
@@ -60,11 +49,15 @@ class ItemListAdapter(private val items: List<Item>, var orientation: Int) :
                 } else {
                     binding.tvItemExtra.text = ""
                 }
+
+                Glide.with(binding.ivItems.context).load(currentItem.image).into(binding.ivItems)
             }
             1 -> {
                 val binding = ItemGridComponentBinding.bind(holder.itemView)
                 binding.tvItemTitle.text = currentItem.name
                 binding.tvItemTPrice.text = currentItem.price
+
+                Glide.with(binding.ivItems.context).load(currentItem.image).into(binding.ivItems)
             }
         }
     }
