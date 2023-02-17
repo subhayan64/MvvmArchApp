@@ -12,13 +12,29 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductsViewModel @Inject constructor(private val productsRepository: ProductsRepository) :
     ViewModel() {
-    private val _items = MutableLiveData<ArrayList<Item>?>()
-    val items = _items
+
+    private val _totalItems = MutableLiveData<ArrayList<Item>?>()
+    private val _searchedItems = MutableLiveData<ArrayList<Item>?>()
+    val items = _searchedItems
 
     init {
+
         viewModelScope.launch {
-            items.value = productsRepository.getProducts().value?.data?.items as ArrayList<Item>
+            _totalItems.value =
+                productsRepository.getProducts().value?.data?.items as? ArrayList<Item>
+            _searchedItems.value = _totalItems.value
+
         }
+
+    }
+
+    fun onSearchTextChanged(newText: String?) {
+        if (newText.isNullOrEmpty()) {
+            _searchedItems.value = _totalItems.value
+            return
+        }
+        _searchedItems.value =
+            _totalItems.value?.filter { it.name.contains(newText) || it.price.contains(newText) } as ArrayList<Item>
     }
 
 

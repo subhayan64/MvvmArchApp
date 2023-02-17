@@ -2,6 +2,7 @@ package com.example.mvvmarchapp
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
@@ -10,12 +11,19 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.mvvmarchapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
+import com.example.mvvmarchapp.viewmodel.ProductsViewModel
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private val productsViewModel: ProductsViewModel by viewModels()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +53,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun searchForItem(newText: String?) {
-        if (newText != null) {
-            Log.d("subhayan", newText)
+            Log.d("subhayan", newText.toString())
+            productsViewModel.onSearchTextChanged(newText)
         }
     }
-}
+
 
 

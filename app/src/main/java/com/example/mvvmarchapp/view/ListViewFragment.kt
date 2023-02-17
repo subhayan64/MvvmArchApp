@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmarchapp.databinding.FragmentListViewBinding
+import com.example.mvvmarchapp.model.Item
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,10 +33,16 @@ class ListViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //collecting data from livedata
+
+        val itemsList = arrayListOf<Item>()
+        adapter = ItemListAdapter(itemsList, 0)
+        binding.rvLinearItems.adapter = adapter
+
         productsViewModel.items.observe(viewLifecycleOwner) { items ->
             items?.let {
-                adapter = ItemListAdapter(items, 0)
-                binding.rvLinearItems.adapter = adapter
+                itemsList.clear()
+                itemsList.addAll(items)
+                adapter.notifyDataSetChanged()
             }
         }
     }
