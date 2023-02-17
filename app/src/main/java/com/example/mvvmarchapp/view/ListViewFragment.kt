@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mvvmarchapp.MyApplication
 import com.example.mvvmarchapp.databinding.FragmentListViewBinding
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
-import com.example.mvvmarchapp.viewmodel.ProductsViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListViewFragment : Fragment() {
 
-    private lateinit var productsViewModel: ProductsViewModel
+    private val productsViewModel: ProductsViewModel by activityViewModels()
     private lateinit var binding: FragmentListViewBinding
     private lateinit var adapter: ItemListAdapter
 
@@ -26,22 +26,17 @@ class ListViewFragment : Fragment() {
         binding = FragmentListViewBinding.inflate(inflater, container, false)
         //assign layout manager
         binding.rvLinearItems.layoutManager = LinearLayoutManager(activity)
+        return binding.root
+    }
 
-        //initialising ViewModel
-        val repository = (activity?.applicationContext as MyApplication).productsRepository
-        productsViewModel = ViewModelProvider(
-            this, ProductsViewModelFactory(
-                repository
-            )
-        ).get(ProductsViewModel::class.java)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         //collecting data from livedata
-        productsViewModel.products.observe(requireActivity()) {
-            productsViewModel.products.value?.data?.items?.let {
-                adapter = ItemListAdapter(it, 0)
+        productsViewModel.items.observe(viewLifecycleOwner) { items ->
+            items?.let {
+                adapter = ItemListAdapter(items, 0)
                 binding.rvLinearItems.adapter = adapter
             }
         }
-        return binding.root
     }
 }

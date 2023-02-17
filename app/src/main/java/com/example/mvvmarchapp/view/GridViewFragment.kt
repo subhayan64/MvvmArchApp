@@ -5,16 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.mvvmarchapp.MyApplication
 import com.example.mvvmarchapp.databinding.FragmentGridViewBinding
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
-import com.example.mvvmarchapp.viewmodel.ProductsViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class GridViewFragment : Fragment() {
-    private lateinit var productsViewModel: ProductsViewModel
+    private val productsViewModel: ProductsViewModel by activityViewModels()
     private lateinit var binding: FragmentGridViewBinding
     private lateinit var adapter: ItemListAdapter
 
@@ -22,28 +21,21 @@ class GridViewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
         // Inflate the layout for this fragment
         binding = FragmentGridViewBinding.inflate(inflater, container, false)
         //assign layout manager
         binding.rvGridItems.layoutManager = GridLayoutManager(activity, 3)
+        return binding.root
+    }
 
-        //initialising ViewModel
-        val repository = (activity?.applicationContext as MyApplication).productsRepository
-        productsViewModel = ViewModelProvider(
-            this, ProductsViewModelFactory(
-                repository
-            )
-        ).get(ProductsViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        //collecting data from livedata
-        productsViewModel.products.observe(viewLifecycleOwner) {
-            it.data.items.let {
-                adapter = ItemListAdapter(it, 1)
+        productsViewModel.items.observe(viewLifecycleOwner) { items ->
+            items?.let {
+                adapter = ItemListAdapter(items, 1)
                 binding.rvGridItems.adapter = adapter
             }
         }
-        return binding.root
     }
 }
