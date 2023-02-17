@@ -12,4 +12,9 @@ class DataBaseHelperImpl @Inject constructor(private val roomDao: RoomDao) : Dat
         return roomDao.getItems()
     }
 
+    //to make mismatch in local and remote data
+    override suspend fun deleteItem() {
+        roomDao.deleteItem("Item 1")
+    }
+
 }

@@ -7,4 +7,6 @@ interface DataBaseHelper {
     suspend fun insertItems(items: List<Item>)
 
     suspend fun getItems(): List<Item>
+
+    suspend fun deleteItem()
 }

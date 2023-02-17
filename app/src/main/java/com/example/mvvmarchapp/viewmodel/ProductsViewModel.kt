@@ -20,8 +20,14 @@ class ProductsViewModel @Inject constructor(private val productsRepository: Prod
     init {
 
         viewModelScope.launch {
+            //get data from local -> update observed live data
+            _totalItems.value = productsRepository.getProductsFromLocal().value as? ArrayList<Item>
+            _searchedItems.value = _totalItems.value
+
+            //get data from network -> update observed live data
+            //or not, based on if data changed
             _totalItems.value =
-                productsRepository.getProducts().value as? ArrayList<Item>
+                productsRepository.getProductsFromRemote().value as? ArrayList<Item>
             _searchedItems.value = _totalItems.value
 
         }

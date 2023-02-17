@@ -14,4 +14,7 @@ interface RoomDao {
 
     @Query("SELECT * FROM items")
     suspend fun getItems(): List<Item>
+
+    @Query("DELETE FROM items WHERE name = :itemName")
+    suspend fun deleteItem(itemName: String)
 }

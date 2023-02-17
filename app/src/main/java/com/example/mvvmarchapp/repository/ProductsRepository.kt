@@ -18,47 +18,36 @@ class ProductsRepository @Inject constructor(
 ) {
     private val productsLiveData = MutableLiveData<List<Item>?>()
 
-    suspend fun getProducts(): LiveData<List<Item>?> {
+    suspend fun getProductsFromLocal(): LiveData<List<Item>?> {
         return withContext(Dispatchers.IO) {
-            ///TODO: check for network connection here
             val dbResultList = dataBaseHelper.getItems()
-            //check if db has data
-            if (dbResultList.isNotEmpty()) {
-                //send data to ViewModel
-                productsLiveData.postValue(Data(dbResultList).items)
-                //do api call
-                try {
-                    val result = apiHelper.getProducts()
-                    if (result.body() != null) {
-                        val apiResultList = result.body()?.data?.items as List<Item>
-                        //check whether data in db same as api response
-                        if (!dbResultList.compareListIgnoreOrder(apiResultList)) {
-                            //send data to ViewModel
-                            productsLiveData.postValue(apiResultList)
-                            //store data in db
-                            dataBaseHelper.insertItems(apiResultList)
-                        }
-                        //else - do nothing
-                    } else {
-                        Log.e("error", "api result is null")
-                    }
-                } catch (e: Exception) {
-                    Log.e("error", e.toString())
-                }
-            } else {
-                //do api call -> send to ViewModel -> store in db
-                try {
-                    val result = apiHelper.getProducts()
-                    if (result.body() != null) {
-                        val apiResultList = result.body()?.data?.items as List<Item>
+            productsLiveData.postValue(Data(dbResultList).items)
+            productsLiveData
+        }
+    }
+
+    suspend fun getProductsFromRemote(): LiveData<List<Item>?> {
+        return withContext(Dispatchers.IO) {
+
+            val dbResultList = dataBaseHelper.getItems()
+            //do api call
+            try {
+                val result = apiHelper.getProducts()
+                if (result.body() != null) {
+                    val apiResultList = result.body()?.data?.items as List<Item>
+                    //check whether data in db is same as api response
+                    if (!dbResultList.compareListIgnoreOrder(apiResultList)) {
+                        //update live data
                         productsLiveData.postValue(apiResultList)
+                        //store data in db
                         dataBaseHelper.insertItems(apiResultList)
-                    } else {
-                        Log.e("error", "api result is null")
                     }
-                } catch (e: Exception) {
-                    Log.e("error", e.toString())
+                    //else - do nothing
+                } else {
+                    Log.e("error", "api result is null")
                 }
+            } catch (e: Exception) {
+                Log.e("error", e.toString())
             }
             productsLiveData
         }
