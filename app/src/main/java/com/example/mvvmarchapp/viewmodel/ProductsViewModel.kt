@@ -21,7 +21,7 @@ class ProductsViewModel @Inject constructor(private val productsRepository: Prod
 
         viewModelScope.launch {
             _totalItems.value =
-                productsRepository.getProducts().value?.data?.items as? ArrayList<Item>
+                productsRepository.getProducts().value as? ArrayList<Item>
             _searchedItems.value = _totalItems.value
 
         }
