@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.example.mvvmarchapp.model.Item
 
 @Dao
-interface RoomDao {
+interface ItemsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItems(items: List<Item>)
@@ -15,6 +15,4 @@ interface RoomDao {
     @Query("SELECT * FROM items")
     suspend fun getItems(): List<Item>
 
-    @Query("DELETE FROM items WHERE name = :itemName")
-    suspend fun deleteItem(itemName: String)
 }

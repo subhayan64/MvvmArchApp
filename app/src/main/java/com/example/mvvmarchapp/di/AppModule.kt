@@ -9,7 +9,7 @@ import com.example.mvvmarchapp.others.Constants
 import com.example.mvvmarchapp.data.local.DataBaseHelper
 import com.example.mvvmarchapp.data.local.DataBaseHelperImpl
 import com.example.mvvmarchapp.data.local.ItemsDatabase
-import com.example.mvvmarchapp.data.local.RoomDao
+import com.example.mvvmarchapp.data.local.ItemsDao
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -41,7 +41,7 @@ abstract class AppModule {
         }
 
         @Provides
-        fun provideRoomDao(itemsDatabase: ItemsDatabase): RoomDao = itemsDatabase.itemDao()
+        fun provideRoomDao(itemsDatabase: ItemsDatabase): ItemsDao = itemsDatabase.itemDao()
 
         @Provides
         @Singleton

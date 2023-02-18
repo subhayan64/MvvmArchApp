@@ -7,5 +7,5 @@ import com.example.mvvmarchapp.model.Item
 @Database(entities = [Item::class], version = 1)
 abstract class ItemsDatabase : RoomDatabase() {
 
-    abstract fun itemDao(): RoomDao
+    abstract fun itemDao(): ItemsDao
 }
