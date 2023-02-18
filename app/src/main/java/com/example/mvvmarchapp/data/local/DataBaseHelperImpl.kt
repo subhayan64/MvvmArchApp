@@ -1,4 +1,4 @@
-package com.example.mvvmarchapp.room
+package com.example.mvvmarchapp.data.local
 
 import com.example.mvvmarchapp.model.Item
 import javax.inject.Inject

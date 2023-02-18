@@ -1,4 +1,4 @@
-package com.example.mvvmarchapp.api
+package com.example.mvvmarchapp.data.api
 
 import com.example.mvvmarchapp.model.Product
 import retrofit2.Response

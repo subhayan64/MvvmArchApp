@@ -2,14 +2,14 @@ package com.example.mvvmarchapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.mvvmarchapp.api.ApiHelper
-import com.example.mvvmarchapp.api.ApiHelperImpl
-import com.example.mvvmarchapp.api.ApiInterface
+import com.example.mvvmarchapp.data.api.ApiHelper
+import com.example.mvvmarchapp.data.api.ApiHelperImpl
+import com.example.mvvmarchapp.data.api.ApiInterface
 import com.example.mvvmarchapp.others.Constants
-import com.example.mvvmarchapp.room.DataBaseHelper
-import com.example.mvvmarchapp.room.DataBaseHelperImpl
-import com.example.mvvmarchapp.room.ItemsDatabase
-import com.example.mvvmarchapp.room.RoomDao
+import com.example.mvvmarchapp.data.local.DataBaseHelper
+import com.example.mvvmarchapp.data.local.DataBaseHelperImpl
+import com.example.mvvmarchapp.data.local.ItemsDatabase
+import com.example.mvvmarchapp.data.local.RoomDao
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

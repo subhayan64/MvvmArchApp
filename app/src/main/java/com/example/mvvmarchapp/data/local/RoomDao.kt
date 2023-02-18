@@ -1,4 +1,4 @@
-package com.example.mvvmarchapp.room
+package com.example.mvvmarchapp.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

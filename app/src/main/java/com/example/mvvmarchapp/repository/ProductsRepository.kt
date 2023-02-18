@@ -3,10 +3,10 @@ package com.example.mvvmarchapp.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.mvvmarchapp.api.ApiHelper
+import com.example.mvvmarchapp.data.api.ApiHelper
 import com.example.mvvmarchapp.model.Data
 import com.example.mvvmarchapp.model.Item
-import com.example.mvvmarchapp.room.DataBaseHelper
+import com.example.mvvmarchapp.data.local.DataBaseHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
