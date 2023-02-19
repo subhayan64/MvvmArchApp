@@ -25,6 +25,7 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
         triggerWhenInit()
     }
 
+    //trigger this function at init, can be used for refresh
     fun triggerWhenInit() {
         viewModelScope.launch {
             updateFromDatabase()
@@ -32,7 +33,6 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
             updateFromApi()
         }
     }
-
 
     suspend fun getDataFromDatabase(): LiveData<List<Item>?> {
         return itemsRepository.getItemsFromLocal()

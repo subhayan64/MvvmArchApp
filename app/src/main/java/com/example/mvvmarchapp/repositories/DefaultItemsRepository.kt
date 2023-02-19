@@ -47,33 +47,4 @@ class DefaultItemsRepository @Inject constructor(
             itemsLiveData
         }
     }
-
-//
-//    suspend fun getProductsFromRemote(): LiveData<List<Item>?> {
-//        return withContext(Dispatchers.IO) {
-//
-//            val dbResultList = dataBaseHelper.getItems()
-//            //do api call
-//            try {
-//                val result = apiHelper.getProducts()
-//                if (result.body() != null) {
-//                    val apiResultList = result.body()?.data?.items as List<Item>
-//                    //check whether data in db is same as api response
-//                    if (!dbResultList.compareListIgnoreOrder(apiResultList)) {
-//                        //update live data
-//                        productsLiveData.postValue(apiResultList)
-//                        //store data in db
-//                        dataBaseHelper.insertItems(apiResultList)
-//                    }
-//                    //else - do nothing
-//                } else {
-//                    Log.e("error", "api result is null")
-//                }
-//            } catch (e: Exception) {
-//                Log.e("error", e.toString())
-//            }
-//            productsLiveData
-//        }
-//    }
-//
 }

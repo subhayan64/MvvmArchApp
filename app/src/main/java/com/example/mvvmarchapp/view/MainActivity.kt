@@ -1,13 +1,13 @@
-package com.example.mvvmarchapp
+package com.example.mvvmarchapp.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.example.mvvmarchapp.R
 import com.example.mvvmarchapp.databinding.ActivityMainBinding
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     private val productsViewModel: ProductsViewModel by viewModels()
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         setupWithNavController(bottomNavigationView, navController)
 
+        //for searchView: clear focus on search view on app view create
         binding.iAppBarLayout.svSearchView.clearFocus()
         binding.iAppBarLayout.svSearchView.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
@@ -42,19 +42,15 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
+            //invoke to every character input
             override fun onQueryTextChange(newText: String?): Boolean {
-                searchForItem(newText)
+                //send the input string to ViewModel
+                productsViewModel.onSearchTextChanged(newText)
                 return true
             }
-
         })
     }
-
-    private fun searchForItem(newText: String?) {
-            Log.d("subhayan", newText.toString())
-            productsViewModel.onSearchTextChanged(newText)
-        }
-    }
+}
 
 
 

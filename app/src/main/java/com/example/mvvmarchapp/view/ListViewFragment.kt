@@ -32,12 +32,11 @@ class ListViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //collecting data from livedata
-
         val itemsList = arrayListOf<Item>()
         adapter = ItemListAdapter(itemsList, 0)
         binding.rvLinearItems.adapter = adapter
 
+        //collecting data from livedata
         productsViewModel.items.observe(viewLifecycleOwner) { items ->
             items?.let {
                 itemsList.clear()
