@@ -10,6 +10,8 @@ import com.example.mvvmarchapp.data.local.DataBaseHelper
 import com.example.mvvmarchapp.data.local.DataBaseHelperImpl
 import com.example.mvvmarchapp.data.local.ItemsDatabase
 import com.example.mvvmarchapp.data.local.ItemsDao
+import com.example.mvvmarchapp.repositories.DefaultItemsRepository
+import com.example.mvvmarchapp.repositories.ItemsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -64,4 +66,7 @@ abstract class AppModule {
     abstract fun provideDataBaseHelper(dataBaseHelperImpl: DataBaseHelperImpl) : DataBaseHelper
 
 
+    @Binds
+    @Singleton
+    abstract fun provideItemsRepository(defaultItemsRepository: DefaultItemsRepository) : ItemsRepository
 }

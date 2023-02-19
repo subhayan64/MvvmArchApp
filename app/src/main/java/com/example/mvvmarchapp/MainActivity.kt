@@ -9,11 +9,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.mvvmarchapp.databinding.ActivityMainBinding
+import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
-import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 
 
 @AndroidEntryPoint
