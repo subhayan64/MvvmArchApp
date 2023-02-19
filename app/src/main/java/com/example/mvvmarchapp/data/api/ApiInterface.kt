@@ -1,4 +1,4 @@
-package com.example.mvvmarchapp.api
+package com.example.mvvmarchapp.data.api
 
 import com.example.mvvmarchapp.model.Product
 import retrofit2.Response
@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface ApiInterface {
 
-    @GET("b6a30bb0-140f-4966-8608-1dc35fa1fadc")
+    @GET("995ce2a0-1daf-4993-915f-8c198f3f752c")
     suspend fun getProducts(): Response<Product>
 }
