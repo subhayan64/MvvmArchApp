@@ -51,7 +51,7 @@ abstract class AppModule {
             return Room.databaseBuilder(
                 context,
                 ItemsDatabase::class.java,
-                "itemsDB"
+                Constants.DATABASE_NAME
             ).build()
         }
 
@@ -63,10 +63,10 @@ abstract class AppModule {
 
     @Binds
     @Singleton
-    abstract fun provideDataBaseHelper(dataBaseHelperImpl: DataBaseHelperImpl) : DataBaseHelper
+    abstract fun provideDataBaseHelper(dataBaseHelperImpl: DataBaseHelperImpl): DataBaseHelper
 
 
     @Binds
     @Singleton
-    abstract fun provideItemsRepository(defaultItemsRepository: DefaultItemsRepository) : ItemsRepository
+    abstract fun provideItemsRepository(defaultItemsRepository: DefaultItemsRepository): ItemsRepository
 }
