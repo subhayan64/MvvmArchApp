@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.mvvmarchapp.R
 import com.example.mvvmarchapp.databinding.ActivityMainBinding
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
@@ -30,9 +31,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fListViewFragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(binding.bnvBottomNav.id)
-
-        setupWithNavController(bottomNavigationView, navController)
+        binding.bnvBottomNav.setupWithNavController(navController)
 
         //for searchView: clear focus on search view on app view create
         binding.iAppBarLayout.svSearchView.clearFocus()
