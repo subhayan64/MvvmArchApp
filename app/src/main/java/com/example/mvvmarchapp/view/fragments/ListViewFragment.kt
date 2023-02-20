@@ -1,4 +1,4 @@
-package com.example.mvvmarchapp.view
+package com.example.mvvmarchapp.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.mvvmarchapp.databinding.FragmentGridViewBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mvvmarchapp.adapter.ItemListAdapter
+import com.example.mvvmarchapp.databinding.FragmentListViewBinding
+import com.example.mvvmarchapp.model.Item
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GridViewFragment : Fragment() {
+class ListViewFragment : Fragment() {
+
     private val productsViewModel: ProductsViewModel by activityViewModels()
-    private lateinit var binding: FragmentGridViewBinding
+    private lateinit var binding: FragmentListViewBinding
     private lateinit var adapter: ItemListAdapter
 
     override fun onCreateView(
@@ -22,19 +25,24 @@ class GridViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentGridViewBinding.inflate(inflater, container, false)
+        binding = FragmentListViewBinding.inflate(inflater, container, false)
         //assign layout manager
-        binding.rvGridItems.layoutManager = GridLayoutManager(activity, 3)
+        binding.rvLinearItems.layoutManager = LinearLayoutManager(activity)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val itemsList = arrayListOf<Item>()
+        adapter = ItemListAdapter(itemsList, 0)
+        binding.rvLinearItems.adapter = adapter
 
+        //collecting data from livedata
         productsViewModel.items.observe(viewLifecycleOwner) { items ->
             items?.let {
-                adapter = ItemListAdapter(items, 1)
-                binding.rvGridItems.adapter = adapter
+                itemsList.clear()
+                itemsList.addAll(items)
+                adapter.notifyDataSetChanged()
             }
         }
     }
