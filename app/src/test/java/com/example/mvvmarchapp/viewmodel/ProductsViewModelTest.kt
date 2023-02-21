@@ -74,6 +74,16 @@ class ProductsViewModelTest {
     }
 
     @Test
+    fun `insert into database check value from getDataFromDatabase, returns size 1`() = runTest{
+        val insertionList = ItemListsForTest.oneItemA
+        productsViewModel.insertIntoDatabase(insertionList)
+        val res = productsViewModel.getDataFromDatabase()
+
+        assertThat(res.value).hasSize(1)
+        assertThat(res.value?.get(0)?.name).isEqualTo("Item 1")
+    }
+
+    @Test
     fun `pass diff list in saveItems as totalItems, returns true`() = runTest {
 
 
