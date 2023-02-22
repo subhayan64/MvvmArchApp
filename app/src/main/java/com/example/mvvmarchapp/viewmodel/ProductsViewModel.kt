@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mvvmarchapp.model.Item
 import com.example.mvvmarchapp.repositories.ItemsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,11 +34,8 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
 
     //trigger this function at init, can be used for refresh
     fun triggerWhenInit() {
-        viewModelScope.launch {
-            updateFromDatabase()
-
-            updateFromApi()
-        }
+        updateFromDatabase()
+        updateFromApi()
     }
 
     fun onSwipeLeft() {
@@ -81,15 +79,18 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
         return false
     }
 
-    suspend fun updateFromDatabase() {
-        _totalItems.value = getDataFromDatabase().value as? ArrayList<Item>
-        _itemsToDisplay.value = _totalItems.value
+    fun updateFromDatabase() {
+        viewModelScope.launch {
+            _totalItems.value = getDataFromDatabase().value as? ArrayList<Item>
+            _itemsToDisplay.value = _totalItems.value
+        }
     }
 
-    suspend fun updateFromApi() {
-        val apiResult = getDataFromApi().value as? ArrayList<Item>
-        saveItems(apiResult)
-
+    fun updateFromApi() {
+        viewModelScope.launch {
+            val apiResult = getDataFromApi().value as? ArrayList<Item>
+            saveItems(apiResult)
+        }
     }
 
     fun compareListIgnoreOrder(first: List<Item>, second: List<Item>): Boolean =

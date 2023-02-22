@@ -14,6 +14,7 @@ import com.example.mvvmarchapp.model.Item
 import com.example.mvvmarchapp.others.utilfunctions.OnSwipeTouchListener
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class ListViewFragment : Fragment() {
@@ -52,15 +53,16 @@ class ListViewFragment : Fragment() {
         binding.rvLinearItems.setOnTouchListener(object : OnSwipeTouchListener(context) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
-                println("onSwipeLeft")
                 productsViewModel.onSwipeLeft()
             }
-
-            override fun onSwipeDown() {
-                super.onSwipeDown()
-                Toast.makeText(context, "swipe down", Toast.LENGTH_SHORT).show()
-            }
-            
         })
+
+
+        binding.srlSwipeRefreshList.setOnRefreshListener {
+            productsViewModel.updateFromApi()
+            if (binding.srlSwipeRefreshList.isRefreshing) {
+                binding.srlSwipeRefreshList.isRefreshing = false
+            }
+        }
     }
 }
