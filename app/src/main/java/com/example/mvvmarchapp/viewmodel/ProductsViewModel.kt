@@ -21,6 +21,12 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
     val itemsToDisplay: LiveData<ArrayList<Item>?> = _itemsToDisplay
     val totalItems: LiveData<ArrayList<Item>?> = _totalItems
 
+    private val _swipeLeftTrigger = MutableLiveData<Unit>()
+    private val _swipeRightTrigger = MutableLiveData<Unit>()
+
+    val swipeLeftTrigger = _swipeLeftTrigger
+    val swipeRightTrigger = _swipeRightTrigger
+
     init {
         triggerWhenInit()
     }
@@ -32,6 +38,14 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
 
             updateFromApi()
         }
+    }
+
+    fun onSwipeLeft() {
+        _swipeLeftTrigger.postValue(Unit)
+    }
+
+    fun onSwipeRight() {
+        _swipeRightTrigger.postValue(Unit)
     }
 
     suspend fun getDataFromDatabase(): LiveData<List<Item>?> {

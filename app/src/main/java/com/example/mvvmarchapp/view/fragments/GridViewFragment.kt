@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mvvmarchapp.adapter.ItemListAdapter
 import com.example.mvvmarchapp.databinding.FragmentGridViewBinding
+import com.example.mvvmarchapp.others.utilfunctions.OnSwipeTouchListener
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,5 +39,13 @@ class GridViewFragment : Fragment() {
                 binding.rvGridItems.adapter = adapter
             }
         }
+
+        binding.rvGridItems.setOnTouchListener(object : OnSwipeTouchListener(context) {
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                println("onSwipeRight")
+                productsViewModel.onSwipeRight()
+            }
+        })
     }
 }
