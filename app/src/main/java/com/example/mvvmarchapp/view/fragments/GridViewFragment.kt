@@ -35,7 +35,6 @@ class GridViewFragment : Fragment() {
 
         productsViewModel.items.observe(viewLifecycleOwner) { items ->
             items?.let {
-                it.addAll(it)
                 adapter = ItemListAdapter(it, 1)
                 binding.rvGridItems.adapter = adapter
             }
@@ -48,5 +47,11 @@ class GridViewFragment : Fragment() {
                 productsViewModel.onSwipeRight()
             }
         })
+        binding.srlSwipeRefreshGrid.setOnRefreshListener {
+            productsViewModel.updateFromApi()
+            if (binding.srlSwipeRefreshGrid.isRefreshing) {
+                binding.srlSwipeRefreshGrid.isRefreshing = false
+            }
+        }
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="4dp"
-    android:layout_marginVertical="8dp"
+    android:layout_marginVertical="15dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -23,6 +23,7 @@
         tools:text="Item 1"
         android:textSize="14sp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/ivItems"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -33,11 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textSize="14sp"
+        android:textColor="@color/black"
         tools:text="MRP: ₹100.0"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvItemTitle"
-
         />
 
 
