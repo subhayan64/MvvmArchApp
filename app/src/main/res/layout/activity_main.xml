@@ -22,7 +22,6 @@
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iAppBarLayout"
         app:layout_constraintBottom_toTopOf="@id/bnvBottomNav"

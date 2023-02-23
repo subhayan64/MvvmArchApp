@@ -35,7 +35,8 @@ class GridViewFragment : Fragment() {
 
         productsViewModel.items.observe(viewLifecycleOwner) { items ->
             items?.let {
-                adapter = ItemListAdapter(items, 1)
+                it.addAll(it)
+                adapter = ItemListAdapter(it, 1)
                 binding.rvGridItems.adapter = adapter
             }
         }
