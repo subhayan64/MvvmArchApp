@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mvvmarchapp.model.Item
+import com.example.mvvmarchapp.model.Product
+import com.example.mvvmarchapp.others.Resource
+import com.example.mvvmarchapp.others.Status
 import com.example.mvvmarchapp.repositories.ItemsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -21,6 +24,9 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
 
     val itemsToDisplay: LiveData<ArrayList<Item>?> = _itemsToDisplay
     val totalItems: LiveData<ArrayList<Item>?> = _totalItems
+
+    private val _status = MutableLiveData<Resource<Product>>()
+    val status: LiveData<Resource<Product>> = _status
 
     private val _swipeLeftTrigger = MutableLiveData<Unit>()
     private val _swipeRightTrigger = MutableLiveData<Unit>()
@@ -50,7 +56,7 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
         return itemsRepository.getItemsFromLocal()
     }
 
-    suspend fun getDataFromApi(): LiveData<List<Item>?> {
+    suspend fun getDataFromApi(): Resource<Product> {
         return itemsRepository.getItemsFromRemote()
     }
 
@@ -88,8 +94,11 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
 
     fun updateFromApi() {
         viewModelScope.launch {
-            val apiResult = getDataFromApi().value as? ArrayList<Item>
-            saveItems(apiResult)
+            val apiResult = getDataFromApi()
+            _status.postValue(apiResult)
+            if (apiResult.status == Status.SUCCESS) {
+                saveItems(apiResult.data?.data?.items as? ArrayList<Item>)
+            }
         }
     }
 

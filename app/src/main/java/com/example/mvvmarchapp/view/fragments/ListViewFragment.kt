@@ -8,9 +8,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mvvmarchapp.R
 import com.example.mvvmarchapp.adapter.ItemListAdapter
 import com.example.mvvmarchapp.databinding.FragmentListViewBinding
 import com.example.mvvmarchapp.model.Item
+import com.example.mvvmarchapp.others.Status
 import com.example.mvvmarchapp.others.utilfunctions.OnSwipeTouchListener
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,6 +41,8 @@ class ListViewFragment : Fragment() {
         val itemsList = arrayListOf<Item>()
         adapter = ItemListAdapter(itemsList, 0)
         binding.rvLinearItems.adapter = adapter
+        binding.srlSwipeRefreshList.setColorSchemeColors(resources.getColor(R.color.purple_500))
+        binding.srlSwipeRefreshList.isRefreshing = true
 
         //collecting data from livedata
         productsViewModel.items.observe(viewLifecycleOwner) { items ->
@@ -46,6 +50,27 @@ class ListViewFragment : Fragment() {
                 itemsList.clear()
                 itemsList.addAll(items)
                 adapter.notifyDataSetChanged()
+            }
+        }
+        binding.srlSwipeRefreshList.setOnRefreshListener {
+            productsViewModel.updateFromApi()
+        }
+
+        productsViewModel.status.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.LOADING -> {
+                    binding.srlSwipeRefreshList.isRefreshing = true
+                }
+                Status.SUCCESS -> {
+                    binding.srlSwipeRefreshList.isRefreshing = false
+                }
+                Status.ERROR -> {
+                    binding.srlSwipeRefreshList.isRefreshing = false
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    binding.srlSwipeRefreshList.isRefreshing = false
+                }
             }
         }
 
@@ -56,13 +81,5 @@ class ListViewFragment : Fragment() {
                 productsViewModel.onSwipeLeft()
             }
         })
-
-
-        binding.srlSwipeRefreshList.setOnRefreshListener {
-            productsViewModel.updateFromApi()
-            if (binding.srlSwipeRefreshList.isRefreshing) {
-                binding.srlSwipeRefreshList.isRefreshing = false
-            }
-        }
     }
 }

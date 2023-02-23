@@ -7,6 +7,8 @@ import com.example.mvvmarchapp.data.api.ApiHelper
 import com.example.mvvmarchapp.model.Data
 import com.example.mvvmarchapp.model.Item
 import com.example.mvvmarchapp.data.local.DataBaseHelper
+import com.example.mvvmarchapp.model.Product
+import com.example.mvvmarchapp.others.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -30,21 +32,21 @@ class DefaultItemsRepository @Inject constructor(
         dataBaseHelper.insertItems(itemsList)
     }
 
-    override suspend fun getItemsFromRemote(): LiveData<List<Item>?> {
-        val itemsLiveData = MutableLiveData<List<Item>?>()
+    override suspend fun getItemsFromRemote(): Resource<Product> {
         return withContext(Dispatchers.IO) {
             try {
-                val result = apiHelper.getProducts()
-                if (result.body() != null) {
-                    val apiResultList = result.body()?.data?.items as List<Item>
-                    itemsLiveData.postValue(apiResultList)
+                val response = apiHelper.getProducts()
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        return@let Resource.success(it)
+                    } ?: Resource.error("An unknown error occured", null)
                 } else {
-                    Log.e("error", "api result is null")
+                    Resource.error("An unknown error occured", null)
                 }
             } catch (e: Exception) {
                 Log.e("error", e.toString())
+                Resource.error("Couldn't reach the server. Check your internet connection", null)
             }
-            itemsLiveData
         }
     }
 }
