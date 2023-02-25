@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:title=""
         android:id="@+id/listViewFragment"
         android:icon="@drawable/bottom_nav_icon"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction,MenuTitle" />
     <item
-        android:title=""
         android:id="@+id/gridViewFragment"
         android:icon="@drawable/bottom_nav_icon"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction,MenuTitle" />
     <item
         android:icon="@drawable/bottom_nav_icon"
-        android:title=""
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction,MenuTitle" />
     <item
         android:icon="@drawable/bottom_nav_icon"
-        android:title=""
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction,MenuTitle" />
     <item
         android:icon="@drawable/bottom_nav_icon"
-        android:title=""
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction,MenuTitle" />
 </menu>
