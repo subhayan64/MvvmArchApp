@@ -1,4 +1,4 @@
-package com.example.mvvmarchapp.viewmodel
+package com.example.mvvmarchapp
 
 import com.example.mvvmarchapp.model.Item
 

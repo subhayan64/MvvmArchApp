@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.androiddevs.shoppinglisttestingyt.getOrAwaitValueTest
+import com.example.mvvmarchapp.ItemListsForTest
 import com.example.mvvmarchapp.model.Data
 import com.example.mvvmarchapp.model.Item
 import com.example.mvvmarchapp.model.Product
@@ -283,24 +284,24 @@ class ProductsViewModelTest {
     @Test
     fun `pass diff list in saveItems as totalItems, returns true`() = runTest {
 
-    val _dbLiveData = MutableLiveData<List<Item>?>()
-    _dbLiveData.postValue(ItemListsForTest.oneItemA)
-    val dbLivedata: LiveData<List<Item>?> = _dbLiveData
+        val _dbLiveData = MutableLiveData<List<Item>?>()
+        _dbLiveData.postValue(ItemListsForTest.oneItemA)
+        val dbLivedata: LiveData<List<Item>?> = _dbLiveData
 
-    Mockito.`when`(repository.getItemsFromLocal()).thenReturn(dbLivedata)
+        Mockito.`when`(repository.getItemsFromLocal()).thenReturn(dbLivedata)
 
-    val sut = ProductsViewModel(repository)
-    sut.updateFromDatabase()
-    testDispatcher.scheduler.advanceUntilIdle()
+        val sut = ProductsViewModel(repository)
+        sut.updateFromDatabase()
+        testDispatcher.scheduler.advanceUntilIdle()
 
 
-    val res = sut.saveItems(ItemListsForTest.threeItems)
-    val totalItems = sut.totalItems
-    val itemsToDisplay = sut.itemsToDisplay
-    assertThat(totalItems.value).isNotEmpty()
-    assertThat(totalItems.value).hasSize(3)
-    assertThat(itemsToDisplay.value).hasSize(3)
-    assertThat(res).isTrue()
+        val res = sut.saveItems(ItemListsForTest.threeItems)
+        val totalItems = sut.totalItems
+        val itemsToDisplay = sut.itemsToDisplay
+        assertThat(totalItems.value).isNotEmpty()
+        assertThat(totalItems.value).hasSize(3)
+        assertThat(itemsToDisplay.value).hasSize(3)
+        assertThat(res).isTrue()
     }
 
     @Test
@@ -443,7 +444,7 @@ class ProductsViewModelTest {
     }
 
     @Test
-    fun `onSwipeLeft check livedata`(){
+    fun `onSwipeLeft check livedata`() {
         val sut = ProductsViewModel(repository)
 
         sut.onSwipeLeft()
@@ -454,7 +455,7 @@ class ProductsViewModelTest {
     }
 
     @Test
-    fun `onSwipeRight check livedata`(){
+    fun `onSwipeRight check livedata`() {
         val sut = ProductsViewModel(repository)
 
         sut.onSwipeRight()
