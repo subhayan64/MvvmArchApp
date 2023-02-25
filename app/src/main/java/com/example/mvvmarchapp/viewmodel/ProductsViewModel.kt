@@ -10,7 +10,6 @@ import com.example.mvvmarchapp.others.Resource
 import com.example.mvvmarchapp.others.Status
 import com.example.mvvmarchapp.repositories.ItemsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

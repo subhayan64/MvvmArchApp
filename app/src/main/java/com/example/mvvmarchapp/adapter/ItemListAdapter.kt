@@ -17,22 +17,25 @@ class ItemListAdapter(private val items: List<Item>, var orientation: Int) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
 
-        return if (orientation == 0) {
-            ItemViewHolder(
-                ItemsTileBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                ).root, orientation
-            )
-        } else {
-            ItemViewHolder(
-                ItemGridComponentBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                ).root, orientation
-            )
+        return when (orientation) {
+            0 -> {
+                ItemViewHolder(
+                    ItemsTileBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ).root, orientation
+                )
+            }
+            else -> {
+                ItemViewHolder(
+                    ItemGridComponentBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ).root, orientation
+                )
+            }
         }
     }
 
@@ -52,7 +55,7 @@ class ItemListAdapter(private val items: List<Item>, var orientation: Int) :
                 //implement network image with Glide to appropriate image view
                 Glide.with(binding.ivItems.context).load(currentItem.image).into(binding.ivItems)
             }
-            1 -> {
+            else -> {
                 val binding = ItemGridComponentBinding.bind(holder.itemView)
                 binding.tvItemTitle.text = currentItem.name
                 binding.tvItemTPrice.text = currentItem.price
