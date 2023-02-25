@@ -23,6 +23,7 @@
         android:layout_marginTop="@dimen/dimen_4"
         android:textColor="@color/black"
         android:textSize="@dimen/size_14"
+        app:fontFamily="@font/inter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivItems"
         tools:text="@string/item_1" />
@@ -34,7 +35,7 @@
         android:layout_marginTop="@dimen/dimen_4"
         android:textColor="@color/black"
         android:textSize="@dimen/size_14"
-        android:textStyle="bold"
+        app:fontFamily="@font/inter_semibold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvItemTitle"
         tools:text="@string/mrp_100" />
