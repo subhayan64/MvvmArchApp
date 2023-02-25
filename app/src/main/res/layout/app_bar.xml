@@ -4,18 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/app_bar_bg"
-    android:paddingTop="34dp"
-    android:paddingEnd="35dp"
-    android:paddingBottom="21dp">
+    android:paddingTop="@dimen/dimen_34"
+    android:paddingEnd="@dimen/dimen_34"
+    android:paddingBottom="@dimen/dimen_20">
 
     <TextView
         android:id="@+id/tvExplore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Explore"
-        android:layout_marginStart="49dp"
+        android:text="@string/explore"
+        android:layout_marginStart="@dimen/dimen_50"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="@dimen/size_18"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,25 +24,25 @@
         android:id="@+id/btnFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Filter"
+        android:text="@string/filter"
         android:textColor="@color/selected"
-        android:textSize="16sp"
+        android:textSize="@dimen/size_16"
         app:layout_constraintBaseline_toBaselineOf="@id/tvExplore"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/svSearchView"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_zero"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/dimen_16"
         android:background="@drawable/edit_text_shape"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="@dimen/dimen_34"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvExplore"
         app:queryBackground="@null"
-        app:queryHint="Search"
+        app:queryHint="@string/search"
         app:searchIcon="@null" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

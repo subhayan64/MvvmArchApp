@@ -18,8 +18,8 @@
     <fragment
         android:id="@+id/fListViewFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/dimen_zero"
+        android:layout_height="@dimen/dimen_zero"
         app:defaultNavHost="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvBottomNav"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_zero"
         android:layout_height="wrap_content"
         android:background="@color/bottom_nav_bg"
         app:menu="@menu/bottom_nav_menu"

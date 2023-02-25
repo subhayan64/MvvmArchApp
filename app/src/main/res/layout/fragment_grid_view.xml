@@ -8,10 +8,10 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srlSwipeRefreshGrid"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_zero"
         android:layout_height="match_parent"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
+        android:paddingStart="@dimen/dimen_20"
+        android:paddingEnd="@dimen/dimen_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:clipToPadding="false"
-            android:paddingTop="25dp"
+            android:paddingTop="@dimen/dimen_26"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

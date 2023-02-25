@@ -2,5 +2,12 @@
     <string name="app_name">Store</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Filter">Filter</string>
+    <string name="filter">Filter</string>
+    <string name="explore">Explore</string>
+    <string name="search">Search</string>
+    <string name="item_image">Item image</string>
+    <string name="item_1">Item 1</string>
+    <string name="mrp_100">₹100.0</string>
+    <string name="mrp">MRP:</string>
+    <string name="same_day_shipping">Same Day Shipping</string>
 </resources>

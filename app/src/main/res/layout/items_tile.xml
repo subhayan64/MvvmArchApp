@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    android:paddingBottom="14dp">
+    android:paddingLeft="@dimen/dimen_32"
+    android:paddingRight="@dimen/dimen_32"
+    android:paddingBottom="@dimen/dimen_14">
 
     <ImageView
         android:id="@+id/ivItems"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="Item image"
+        android:layout_width="@dimen/dimen_50"
+        android:layout_height="@dimen/dimen_50"
+        android:contentDescription="@string/item_image"
         android:src="@drawable/content_block"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,56 +21,52 @@
 
     <TextView
         android:id="@+id/tvItemTitle"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:textSize="@dimen/size_16"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/ivItems"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Item 1"
-
-        />
+        tools:text="@string/item_1" />
 
     <TextView
         android:id="@+id/tvItemMRP"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="MRP:"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:text="@string/mrp"
         android:textColor="@color/mrp_color"
-        android:textSize="14sp"
+        android:textSize="@dimen/size_14"
         app:layout_constraintStart_toEndOf="@id/ivItems"
-        app:layout_constraintTop_toBottomOf="@id/tvItemTitle"
-
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvItemTitle" />
 
     <TextView
         android:id="@+id/tvItemTPrice"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/dimen_4"
+        android:layout_marginTop="@dimen/dimen_8"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="@dimen/size_14"
         app:layout_constraintBaseline_toBaselineOf="@id/tvItemMRP"
         app:layout_constraintStart_toEndOf="@id/tvItemMRP"
-        tools:text="₹100.0" />
+        tools:text="@string/mrp_100" />
 
     <TextView
         android:id="@+id/tvItemExtra"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dimen_zero"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:textSize="@dimen/size_12"
         app:layout_constraintBaseline_toBaselineOf="@id/tvItemMRP"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Same Day Shipping" />
+        tools:text="@string/same_day_shipping" />
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="14dp"
+        android:layout_width="@dimen/dimen_zero"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_marginTop="@dimen/dimen_14"
         android:background="@color/divider_color"
         app:layout_constraintStart_toStartOf="@+id/tvItemMRP"
         app:layout_constraintTop_toBottomOf="@id/tvItemMRP" />
