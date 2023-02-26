@@ -16,6 +16,16 @@ import com.example.mvvmarchapp.others.utilfunctions.OnSwipeTouchListener
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Fragment responsible for rendering grid recycler view to display a grid of items.
+ *
+ * Inside onViewCreated:
+ * - Observing items livedata to populate recycler view adapter.
+ * - Listener for SwipeRefreshLayout to trigger api call.
+ * - Observing status livedata to update SwipeRefreshLayout loader for different states
+ * - Listener for swipe gesture on the recycler view to propogate the message to the view-model
+ *   and trigger navigation from the main activity
+ */
 @AndroidEntryPoint
 class GridViewFragment : Fragment() {
     private val productsViewModel: ProductsViewModel by activityViewModels()

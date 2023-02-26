@@ -13,6 +13,24 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ProductsViewModel depends on ItemsRepository, which is injected by dagger-hilt
+ * ViewModel responsible for all the BL of the project, Such as:
+ *
+ * -
+ * - [getDataFromApi] calls repository function to get data from remote api.
+ * - [insertIntoDatabase] uses repository function to insert list of data into local database.
+ * - [updateFromDatabase] gets data from local and updates livedata variables for the UI.
+ * - [updateFromApi] gets data from remote and updates _status for UI to get API loading
+ *   state, and onSuccess send the data to [saveItems]
+ * - [saveItems] validates the data from api, compares it with the persistent data and
+ *   insert the same into database and in-turn update the livedata variables.
+ * - [compareListIgnoreOrder] takes two lists as parameters and compares their equality
+ * - [onSearchTextChanged] gets triggered from the main activity, filters _totalItems livedata
+ *   with the passed search string and updates the _itemsToDisplay livedata.
+ * - [onSwipeLeft] is triggered from fragment, updates _swipeLeftTrigger livedata
+ * - [onSwipeRight] is triggered from fragment, updates _swipeRightTrigger livedata
+ */
 @HiltViewModel
 class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRepository) :
     ViewModel() {

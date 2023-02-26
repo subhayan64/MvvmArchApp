@@ -1,5 +1,8 @@
 package com.example.mvvmarchapp.others
 
+/**
+ * Network Resource data class to wrap api response data based on status.
+ */
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
     companion object {
         fun <T> success(data: T?): Resource<T> {

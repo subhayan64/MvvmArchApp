@@ -13,27 +13,41 @@ import com.example.mvvmarchapp.databinding.ActivityMainBinding
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
+/**
+ * Main and only activity of the project. Corresponding activity_main.xml is responsible for
+ * rendering the App bar, NavHostFragment and BottomNavigationView.
+ *
+ * View binding is used to set the content view and also to set up NavController
+ *
+ * Dagger-hilt is used in the project for dependency injection, hence view-model's object is
+ * accessed using Lazy delegate.
+ *
+ * Inside [onCreate]:
+ * - Listener to the SearchView is added to trigger search function in view-model and update
+ *   the livedata.
+ * - Livedata from view-model is observed to trigger navigation between fragments, whenever
+ *   swipe gesture is detected.
+ */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var mBinding: ActivityMainBinding
     private lateinit var navController: NavController
     private val productsViewModel: ProductsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fListViewFragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        binding.bnvBottomNav.setupWithNavController(navController)
+        mBinding.bnvBottomNav.setupWithNavController(navController)
 
         //for searchView: clear focus on search view on app view create
-        binding.iAppBarLayout.svSearchView.clearFocus()
-        binding.iAppBarLayout.svSearchView.setOnQueryTextListener(object :
+        mBinding.iAppBarLayout.svSearchView.clearFocus()
+        mBinding.iAppBarLayout.svSearchView.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
@@ -50,14 +64,14 @@ class MainActivity : AppCompatActivity() {
 
         productsViewModel.swipeLeftTrigger.observe(this) {
             NavigationUI.onNavDestinationSelected(
-                binding.bnvBottomNav.menu.findItem(R.id.gridViewFragment),
+                mBinding.bnvBottomNav.menu.findItem(R.id.gridViewFragment),
                 navController
             )
         }
 
         productsViewModel.swipeRightTrigger.observe(this) {
             NavigationUI.onNavDestinationSelected(
-                binding.bnvBottomNav.menu.findItem(R.id.listViewFragment),
+                mBinding.bnvBottomNav.menu.findItem(R.id.listViewFragment),
                 navController
             )
         }

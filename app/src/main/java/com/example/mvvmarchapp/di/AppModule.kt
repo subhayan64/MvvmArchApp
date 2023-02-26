@@ -20,6 +20,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+/**
+ * Module class to define the injectables for dagger-hilt
+ *
+ * - [provideBaseUrl] provides base url from constants file
+ * - [provideMyApi] provides singleton instance of ApiInterface
+ * - [provideRoomDao] provides instance of [ItemsDao]
+ * - [provideItemsDatabase] provides singleton instance of [ItemsDatabase]
+ * - [provideApiHelper] makes singleton instance to bind [ApiHelper] to [ApiHelperImpl]
+ * - [provideDataBaseHelper] makes singleton instance to bind [DataBaseHelperImpl] to [DataBaseHelper]
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class AppModule {

@@ -18,6 +18,16 @@ import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
+/**
+ * Fragment responsible for rendering linear recycler view to display list of items.
+ *
+ * Inside onViewCreated:
+ * - Observing items livedata to populate recycler view adapter.
+ * - Listener for SwipeRefreshLayout to trigger api call.
+ * - Observing status livedata to update SwipeRefreshLayout loader for different states
+ * - Listener for swipe gesture on the recycler view to propogate the message to the view-model
+ *   and trigger navigation from the main activity
+ */
 @AndroidEntryPoint
 class ListViewFragment : Fragment() {
 
@@ -41,6 +51,7 @@ class ListViewFragment : Fragment() {
         val itemsList = arrayListOf<Item>()
         adapter = ItemListAdapter(itemsList, 0)
         binding.rvLinearItems.adapter = adapter
+        //setting the color of swipe refresh layout animation
         binding.srlSwipeRefreshList.setColorSchemeColors(resources.getColor(R.color.purple_500))
         binding.srlSwipeRefreshList.isRefreshing = true
 

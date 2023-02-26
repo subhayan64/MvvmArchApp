@@ -13,7 +13,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.Exception
-
+/**
+ * Repository layer of the project. Responsible to interact with the data layer.
+ * - [getItemsFromLocal] gets data from the room database.
+ * - [insertIntoLocal] passes list of data to the data layer to insert into database.
+ * - [getItemsFromRemote] triggers api call in data layer, validates the response and send back to
+ *   view-model in Resource object
+ */
 class ItemsRepository @Inject constructor(
     private val apiHelper: ApiHelper,
     private val dataBaseHelper: DataBaseHelper

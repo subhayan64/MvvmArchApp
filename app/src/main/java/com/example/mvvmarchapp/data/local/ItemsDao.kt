@@ -6,6 +6,12 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.mvvmarchapp.model.Item
 
+/**
+ * Data Access Object interface to define all the database interactions
+ * - [insertItems] inserts list of [Item].
+ *   Replaces the whole entry on conflict in that primaryKey.
+ * - [getItems] gets all the Items from the database table, returns List of [Item].
+ */
 @Dao
 interface ItemsDao {
 

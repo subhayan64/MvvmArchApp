@@ -4,6 +4,9 @@ import com.example.mvvmarchapp.model.Product
 import retrofit2.Response
 import retrofit2.http.GET
 
+/**
+ * Retrofit interface to define our API requests
+ */
 const val apiEndpoint = "995ce2a0-1daf-4993-915f-8c198f3f752c"
 
 interface ApiInterface {
