@@ -129,6 +129,9 @@ class ItemsRepositoryTest {
         assertThat(result.value).isNotEmpty()
         assertThat(result.value).hasSize(3)
         assertThat(result.value?.get(0)?.name).isEqualTo("Item 1")
+        assertThat(result.value?.get(1)?.extra).isNull()
+        assertThat(result.value?.get(1)?.extra).isNull()
+        assertThat(result.value?.get(2)?.image).isEmpty()
     }
 }
 
