@@ -3,8 +3,8 @@ package com.example.mvvmarchapp.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.androiddevs.shoppinglisttestingyt.getOrAwaitValueTest
 import com.example.mvvmarchapp.ItemListsForTest
+import com.example.mvvmarchapp.getOrAwaitValueTest
 import com.example.mvvmarchapp.model.Data
 import com.example.mvvmarchapp.model.Item
 import com.example.mvvmarchapp.model.Product

@@ -1,4 +1,4 @@
-package com.androiddevs.shoppinglisttestingyt
+package com.example.mvvmarchapp
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

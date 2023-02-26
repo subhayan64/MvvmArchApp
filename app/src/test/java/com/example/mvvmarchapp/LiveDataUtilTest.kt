@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.androiddevs.shoppinglisttestingyt
+package com.example.mvvmarchapp
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
