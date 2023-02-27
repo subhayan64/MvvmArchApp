@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mvvmarchapp.R
 import com.example.mvvmarchapp.adapter.ItemListAdapter
 import com.example.mvvmarchapp.databinding.FragmentGridViewBinding
-import com.example.mvvmarchapp.others.Status
+import com.example.mvvmarchapp.others.Status.Companion.ERROR
+import com.example.mvvmarchapp.others.Status.Companion.LOADING
+import com.example.mvvmarchapp.others.Status.Companion.SUCCESS
 import com.example.mvvmarchapp.others.utilfunctions.OnSwipeTouchListener
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,13 +63,13 @@ class GridViewFragment : Fragment() {
 
         productsViewModel.status.observe(viewLifecycleOwner) {
             when (it.status) {
-                Status.LOADING -> {
+                LOADING -> {
                     binding.srlSwipeRefreshGrid.isRefreshing = true
                 }
-                Status.SUCCESS -> {
+                SUCCESS -> {
                     binding.srlSwipeRefreshGrid.isRefreshing = false
                 }
-                Status.ERROR -> {
+                ERROR -> {
                     binding.srlSwipeRefreshGrid.isRefreshing = false
                     Toast.makeText(context,  it.message, Toast.LENGTH_SHORT).show()
                 }

@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mvvmarchapp.model.Item
 import com.example.mvvmarchapp.model.Product
 import com.example.mvvmarchapp.others.Resource
-import com.example.mvvmarchapp.others.Status
+import com.example.mvvmarchapp.others.Status.Companion.SUCCESS
 import com.example.mvvmarchapp.repositories.ItemsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -113,7 +113,7 @@ class ProductsViewModel @Inject constructor(private val itemsRepository: ItemsRe
         viewModelScope.launch {
             val apiResult = getDataFromApi()
             _status.postValue(apiResult)
-            if (apiResult.status == Status.SUCCESS) {
+            if (apiResult.status == SUCCESS) {
                 saveItems(apiResult.data?.data?.items as? ArrayList<Item>)
             }
         }

@@ -12,11 +12,12 @@ import com.example.mvvmarchapp.R
 import com.example.mvvmarchapp.adapter.ItemListAdapter
 import com.example.mvvmarchapp.databinding.FragmentListViewBinding
 import com.example.mvvmarchapp.model.Item
-import com.example.mvvmarchapp.others.Status
+import com.example.mvvmarchapp.others.Status.Companion.ERROR
+import com.example.mvvmarchapp.others.Status.Companion.LOADING
+import com.example.mvvmarchapp.others.Status.Companion.SUCCESS
 import com.example.mvvmarchapp.others.utilfunctions.OnSwipeTouchListener
 import com.example.mvvmarchapp.viewmodel.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 
 /**
  * Fragment responsible for rendering linear recycler view to display list of items.
@@ -69,13 +70,13 @@ class ListViewFragment : Fragment() {
 
         productsViewModel.status.observe(viewLifecycleOwner) {
             when (it.status) {
-                Status.LOADING -> {
+                LOADING -> {
                     binding.srlSwipeRefreshList.isRefreshing = true
                 }
-                Status.SUCCESS -> {
+                SUCCESS -> {
                     binding.srlSwipeRefreshList.isRefreshing = false
                 }
-                Status.ERROR -> {
+                ERROR -> {
                     binding.srlSwipeRefreshList.isRefreshing = false
                     Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 }
