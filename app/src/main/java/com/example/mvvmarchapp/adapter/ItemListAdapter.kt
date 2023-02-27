@@ -9,6 +9,11 @@ import com.example.mvvmarchapp.databinding.ItemGridComponentBinding
 import com.example.mvvmarchapp.databinding.ItemsTileBinding
 import com.example.mvvmarchapp.model.Item
 
+/**
+ * Recycler view adapter for both list view and grid view using view binding to access
+ * the view objects and an orientation parameter to determine the render view type of
+ * data objects
+ */
 class ItemListAdapter(private val items: List<Item>, var orientation: Int) :
     RecyclerView.Adapter<ItemListAdapter.ItemViewHolder>() {
 
