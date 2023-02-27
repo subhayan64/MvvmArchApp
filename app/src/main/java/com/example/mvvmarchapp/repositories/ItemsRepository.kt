@@ -11,8 +11,10 @@ import com.example.mvvmarchapp.model.Product
 import com.example.mvvmarchapp.others.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.net.UnknownHostException
 import javax.inject.Inject
 import kotlin.Exception
+
 /**
  * Repository layer of the project. Responsible to interact with the data layer.
  * - [getItemsFromLocal] gets data from the room database.
@@ -49,8 +51,11 @@ class ItemsRepository @Inject constructor(
                 } else {
                     Resource.error("An unknown error occured", null)
                 }
+            } catch (e: UnknownHostException) {
+                Log.e("UnknownHostException", e.toString())
+                Resource.error("Couldn't reach the server. Check your internet connection", null)
             } catch (e: Exception) {
-                Log.e("error", e.toString())
+                Log.e("Exception", e.toString())
                 Resource.error("Couldn't reach the server. Check your internet connection", null)
             }
         }
